@@ -9,7 +9,7 @@
     --text-muted: #777777;
     
     /* Vibrant accent colors */
-    --accent-primary: #ff7b54;
+    --accent-primary: #5465ff;
     --accent-secondary: #ffb26b;
     --accent-neon: #00c3e3;
     --accent-blue: #4f46e5;
@@ -379,8 +379,6 @@ nav a:hover::after {
     padding: 2rem;
     border-radius: 20px;
     max-width: 800px;
-    background: rgba(10, 10, 26, 0.3);
-    backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.05);
     box-shadow: var(--shadow-1);
 }
