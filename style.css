@@ -192,6 +192,26 @@ body::before {
     }
 }
 
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes slideInBottom {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes rotateIn {
+    from { transform: rotate(-10deg) scale(0.9); opacity: 0; }
+    to { transform: rotate(0) scale(1); opacity: 1; }
+}
+
 @keyframes slideInLeft {
     from {
         opacity: 0;
@@ -276,6 +296,9 @@ header {
     width: 100%;
     z-index: 1000;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    top: 0;
+    left: 0;
+    backdrop-filter: blur(10px);
 }
 
 header.hidden {
@@ -308,6 +331,60 @@ nav {
     
     .logo {
         font-size: 1.8rem;
+    }
+    
+    .menu-toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px;
+        height: 21px;
+        cursor: pointer;
+        z-index: 1001;
+        transition: all 0.3s ease;
+    }
+    
+    .menu-toggle span {
+        display: block;
+        height: 3px;
+        width: 100%;
+        background-color: var(--text-primary);
+        border-radius: 3px;
+        transition: all 0.3s ease;
+    }
+    
+    .menu-toggle.active span:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+    }
+    
+    .menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .menu-toggle.active span:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+    }
+    
+    nav ul {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        height: 100vh;
+        background: rgba(10, 10, 10, 0.95);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: right 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+        gap: 2rem;
+        padding: 2rem;
+        box-shadow: -5px 0 30px rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+    }
+    
+    nav ul.active {
+        right: 0;
     }
 }
 
@@ -625,6 +702,11 @@ nav a:hover::after {
     justify-content: center;
     position: relative;
     overflow: hidden;
+    animation: fadeIn 1s ease-out;
+}
+
+.section.active {
+    animation: scaleIn 0.8s ease-out;
 }
 
 .section::before {
@@ -837,7 +919,7 @@ h2::after {
     background: var(--gradient-1);
     opacity: 0;
     transition: opacity 0.4s ease;
-    z-index: 0;
+    z-index: -1;
     pointer-events: none;
 }
 
@@ -845,10 +927,11 @@ h2::after {
     transform: translateY(-8px) scale(1.05);
     box-shadow: var(--shadow-2), 0 0 15px rgba(58, 134, 255, 0.5);
     border-color: rgba(255, 255, 255, 0.2);
+    animation: pulse 2s infinite;
 }
 
 .skill-item:hover::before {
-    opacity: 0.15;
+    opacity: 0.1;
 }
 
 .skill-item:hover::after {
@@ -895,7 +978,14 @@ h2::after {
     color: var(--text-primary);
     font-weight: 600;
     position: relative;
-    z-index: 1;
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+.skill-item:hover h4 {
+    transform: scale(1.05);
+    color: var(--skills-accent);
+    text-shadow: 0 0 8px rgba(155, 89, 182, 0.3);
 }
 
 .skill-level {
@@ -935,7 +1025,13 @@ h2::after {
     color: var(--skills-accent);
     font-weight: 600;
     position: relative;
-    z-index: 1;
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+.skill-item:hover .skill-percent {
+    transform: scale(1.1);
+    color: var(--text-primary);
 }
 
 /* Projects Section */
@@ -1021,7 +1117,7 @@ h2::after {
     background: var(--gradient-2);
     opacity: 0;
     transition: opacity 0.5s ease;
-    z-index: 1;
+    z-index: -1;
     pointer-events: none;
 }
 
@@ -1041,12 +1137,13 @@ h2::after {
 
 .project-card:hover {
     transform: perspective(1000px) rotateX(5deg) rotateY(5deg) translateY(-15px);
-    box-shadow: var(--shadow-2), 0 0 20px var(--accent-neon), 0 0 40px var(--accent-primary);
+    box-shadow: var(--shadow-2), 0 0 20px var(--projects-accent), 0 0 40px var(--projects-accent);
     border-color: transparent;
+    animation: pulse 3s infinite;
 }
 
 .project-card:hover::before {
-    opacity: 0.2;
+    opacity: 0.1;
 }
 
 .project-card:hover .project-image {
@@ -1058,8 +1155,9 @@ h2::after {
 }
 
 .project-card:hover .project-content h3 {
-    color: var(--accent-blue);
-    text-shadow: 0 0 10px rgba(52, 152, 219, 0.3);
+    color: var(--projects-accent);
+    text-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
+    transform: scale(1.05);
 }
 
 .project-card:hover .project-tags span {
@@ -1139,13 +1237,18 @@ h2::after {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+    position: relative;
+    z-index: 2;
 }
 
 .project-card h3 {
     font-size: 1.5rem;
     margin-bottom: 1rem;
-    color: var(--accent-primary);
+    color: var(--projects-accent);
     text-shadow: 0 0 10px rgba(58, 134, 255, 0.3);
+    position: relative;
+    z-index: 2;
+    transition: all 0.3s ease;
 }
 
 .project-card p {
@@ -1154,6 +1257,9 @@ h2::after {
     color: var(--text-secondary);
     margin-bottom: 1.5rem;
     flex-grow: 1;
+    position: relative;
+    z-index: 2;
+    transition: all 0.3s ease;
 }
 
 .project-tags {
@@ -1174,6 +1280,8 @@ h2::after {
     margin-bottom: 0.5rem;
     transition: all 0.3s ease;
     border: 1px solid rgba(52, 152, 219, 0.2);
+    position: relative;
+    z-index: 2;
 }
 
 .project-tags span:hover {
@@ -1452,7 +1560,7 @@ h2::after {
     height: 100%;
     display: flex;
     flex-direction: column;
-    opacity: 0;
+    /* opacity: 0; */
     transform: translateY(30px);
     animation: fadeInUp 0.8s forwards;
     animation-delay: calc(var(--animation-order, 0) * 0.2s);
@@ -1469,10 +1577,10 @@ h2::after {
     left: 0;
     width: 100%;
     height: 100%;
-    background: var(--gradient-4);
+    background: rgb(21, 20, 20);
     opacity: 0;
     transition: opacity 0.5s ease;
-    z-index: 0;
+    z-index: -2;
     pointer-events: none;
 }
 
@@ -1483,7 +1591,7 @@ h2::after {
     left: -2px;
     width: calc(100% + 4px);
     height: calc(100% + 4px);
-    background: var(--gradient-3);
+    background: rgb(0, 0, 0);
     border-radius: 22px;
     opacity: 0;
     z-index: -1;
@@ -1491,21 +1599,27 @@ h2::after {
 }
 
 .blog-card:hover {
-    transform: translateY(-15px) scale(1.02);
-    box-shadow: var(--shadow-2), var(--neon-glow);
+    transform: translateY(-15px) scale(1.01);
+    /* box-shadow: var(--shadow-2), 0 0 20px var(--blog-accent); */
     border-color: transparent;
+    animation: pulse 3s infinite;
 }
 
 .blog-card:hover::before {
-    opacity: 0.1;
+    opacity: 0.05;
 }
 
 .blog-card:hover::after {
-    opacity: 0.5;
+    opacity: 0.2;
 }
 
 .blog-card:hover .blog-image {
     transform: scale(1.05);
+}
+
+.blog-card:hover h3 {
+    transform: scale(1.05);
+    text-shadow: 0 0 10px rgba(238, 130, 238, 0.5);
 }
 
 .blog-image {
@@ -1533,7 +1647,7 @@ h2::after {
     display: flex;
     flex-direction: column;
     position: relative;
-    z-index: 1;
+    z-index: 10;
 }
 
 .blog-card h3 {
@@ -1544,6 +1658,9 @@ h2::after {
     -webkit-text-fill-color: transparent;
     font-weight: 700;
     line-height: 1.3;
+    position: relative;
+    z-index: 10;
+    transition: all 0.3s ease;
 }
 
 .blog-date {
@@ -1567,6 +1684,14 @@ h2::after {
     line-height: 1.6;
     font-size: 0.95rem;
     color: rgba(255, 255, 255, 0.8);
+    position: relative;
+    z-index: 10;
+    transition: all 0.3s ease;
+}
+
+.blog-card:hover p {
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 0 0 1px rgba(255, 255, 255, 0.2);
 }
 
 .blog-category {
@@ -1579,7 +1704,7 @@ h2::after {
     border-radius: 50px;
     font-size: 0.8rem;
     font-weight: 600;
-    z-index: 2;
+    z-index: 20;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
 }
@@ -1594,6 +1719,8 @@ h2::after {
     flex-wrap: wrap;
     gap: 0.5rem;
     margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 20;
 }
 
 .blog-tags span {
@@ -1619,7 +1746,13 @@ h2::after {
     color: var(--blog-accent);
     font-weight: 600;
     position: relative;
+    z-index: 20;
     transition: all 0.3s ease;
+}
+
+.blog-card:hover .read-more {
+    color: var(--accent-indigo);
+    text-shadow: 0 0 5px rgba(108, 92, 231, 0.5);
 }
 
 .read-more::after {
@@ -1928,6 +2061,26 @@ footer {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes slideInBottom {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes rotateIn {
+    from { transform: rotate(-10deg) scale(0.9); opacity: 0; }
+    to { transform: rotate(0) scale(1); opacity: 1; }
 }
 
 @keyframes gradientBG {

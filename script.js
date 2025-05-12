@@ -64,9 +64,11 @@ function typeWriter(element, text, speed = 100) {
     type();
 }
 
-// Scroll reveal animation
+// Enhanced scroll reveal animation
 function reveal() {
     const reveals = document.querySelectorAll('.section');
+    const animationElements = document.querySelectorAll('.skill-item, .project-card, .blog-card, .timeline-item');
+    
     reveals.forEach(reveal => {
         const windowHeight = window.innerHeight;
         const revealTop = reveal.getBoundingClientRect().top;
@@ -74,6 +76,34 @@ function reveal() {
 
         if (revealTop < windowHeight - revealPoint) {
             reveal.classList.add('active');
+        }
+    });
+    
+    animationElements.forEach(element => {
+        const windowHeight = window.innerHeight;
+        const elementTop = element.getBoundingClientRect().top;
+        const elementPoint = 100;
+        
+        if (elementTop < windowHeight - elementPoint) {
+            element.classList.add('animated');
+            
+            // Add staggered animation for child elements
+            if (element.classList.contains('skill-item')) {
+                const icon = element.querySelector('.skill-icon');
+                const progress = element.querySelector('.skill-progress');
+                
+                if (icon) {
+                    setTimeout(() => {
+                        icon.style.animation = 'pulse 3s infinite';
+                    }, 300);
+                }
+                
+                if (progress) {
+                    setTimeout(() => {
+                        progress.style.width = progress.getAttribute('data-width') || '80%';
+                    }, 500);
+                }
+            }
         }
     });
 }
@@ -200,9 +230,16 @@ function setupMobileMenu() {
     const header = document.querySelector('header');
     
     if (menuToggle && navMenu) {
+        // Create hamburger menu spans if they don't exist
+        if (menuToggle.children.length === 0) {
+            for (let i = 0; i < 3; i++) {
+                const span = document.createElement('span');
+                menuToggle.appendChild(span);
+            }
+        }
+        
         // Update initial state based on screen size
         if (window.innerWidth <= 768) {
-            navMenu.style.display = 'none';
             menuToggle.style.display = 'flex';
         } else {
             menuToggle.style.display = 'none';
@@ -212,49 +249,28 @@ function setupMobileMenu() {
         menuToggle.addEventListener('click', () => {
             menuToggle.classList.toggle('active');
             header.classList.toggle('menu-open');
+            navMenu.classList.toggle('active');
             
-            if (navMenu.style.display === 'none' || navMenu.style.display === '') {
-                // Show menu with animation
-                navMenu.style.display = 'flex';
-                navMenu.style.flexDirection = 'column';
-                navMenu.style.position = 'absolute';
-                navMenu.style.top = '100%';
-                navMenu.style.left = '0';
-                navMenu.style.width = '100%';
-                navMenu.style.backgroundColor = 'rgba(15, 15, 15, 0.95)';
-                navMenu.style.backdropFilter = 'blur(10px)';
-                navMenu.style.padding = '1.5rem';
-                navMenu.style.boxShadow = 'var(--shadow-2)';
-                navMenu.style.zIndex = '100';
-                navMenu.style.borderTop = '1px solid var(--accent-blue)';
-                navMenu.style.transform = 'translateY(0)';
-                navMenu.style.opacity = '1';
-                navMenu.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-                
-                // Add spacing and animations to menu items
+            if (navMenu.classList.contains('active')) {
+                // Add animations to menu items
                 navMenu.querySelectorAll('li').forEach((item, index) => {
-                    item.style.margin = '0.8rem 0';
                     item.style.opacity = '0';
-                    item.style.transform = 'translateX(-20px)';
-                    item.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-                    item.style.transitionDelay = `${index * 0.05}s`;
+                    item.style.transform = 'translateX(20px)';
+                    item.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+                    item.style.transitionDelay = `${index * 0.1}s`;
                     
                     // Trigger animation
                     setTimeout(() => {
                         item.style.opacity = '1';
                         item.style.transform = 'translateX(0)';
-                    }, 10);
+                    }, 50);
                 });
             } else {
                 // Hide menu with animation
                 navMenu.querySelectorAll('li').forEach(item => {
                     item.style.opacity = '0';
-                    item.style.transform = 'translateX(-20px)';
+                    item.style.transform = 'translateX(20px)';
                 });
-                
-                setTimeout(() => {
-                    navMenu.style.display = 'none';
-                }, 300);
             }
         });
         
@@ -264,16 +280,13 @@ function setupMobileMenu() {
                 if (window.innerWidth <= 768) {
                     menuToggle.classList.remove('active');
                     header.classList.remove('menu-open');
+                    navMenu.classList.remove('active');
                     
                     // Hide menu with animation
                     navMenu.querySelectorAll('li').forEach(item => {
                         item.style.opacity = '0';
-                        item.style.transform = 'translateX(-20px)';
+                        item.style.transform = 'translateX(20px)';
                     });
-                    
-                    setTimeout(() => {
-                        navMenu.style.display = 'none';
-                    }, 300);
                 }
             });
         });
@@ -284,18 +297,7 @@ function setupMobileMenu() {
                 menuToggle.style.display = 'none';
                 menuToggle.classList.remove('active');
                 header.classList.remove('menu-open');
-                
-                navMenu.style.display = 'flex';
-                navMenu.style.flexDirection = 'row';
-                navMenu.style.position = 'static';
-                navMenu.style.width = 'auto';
-                navMenu.style.backgroundColor = 'transparent';
-                navMenu.style.backdropFilter = 'none';
-                navMenu.style.padding = '0';
-                navMenu.style.boxShadow = 'none';
-                navMenu.style.borderTop = 'none';
-                navMenu.style.transform = 'none';
-                navMenu.style.opacity = '1';
+                navMenu.classList.remove('active');
                 
                 // Reset menu items styles
                 navMenu.querySelectorAll('li').forEach(item => {
@@ -306,7 +308,9 @@ function setupMobileMenu() {
                 });
             } else {
                 menuToggle.style.display = 'flex';
-                navMenu.style.display = 'none';
+                if (!navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                }
             }
         });
     }
@@ -330,17 +334,51 @@ document.addEventListener('DOMContentLoaded', () => {
     // Trigger initial reveal
     reveal();
     
-    // Add hover effects to skill items
+    // Add hover effects to skill items with enhanced animations
     document.querySelectorAll('.skill-item').forEach(item => {
         item.addEventListener('mouseenter', () => {
             if (item.querySelector('i')) {
                 item.querySelector('i').classList.add('pulse');
             }
+            item.style.transform = 'translateY(-8px) scale(1.05)';
+            item.style.boxShadow = 'var(--shadow-2), 0 0 15px var(--skills-accent)';
         });
         item.addEventListener('mouseleave', () => {
             if (item.querySelector('i')) {
                 item.querySelector('i').classList.remove('pulse');
             }
+            item.style.transform = '';
+            item.style.boxShadow = '';
+        });
+    });
+    
+    // Add hover effects to project cards with enhanced animations
+    document.querySelectorAll('.project-card').forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            card.style.transform = 'perspective(1000px) rotateX(5deg) rotateY(5deg) translateY(-15px)';
+            card.style.boxShadow = 'var(--shadow-2), 0 0 20px var(--projects-accent)';
+        });
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = '';
+            card.style.boxShadow = '';
+        });
+    });
+    
+    // Add hover effects to blog cards with enhanced animations
+    document.querySelectorAll('.blog-card').forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            card.style.transform = 'translateY(-15px) scale(1.02)';
+            card.style.boxShadow = 'var(--shadow-2), 0 0 20px var(--blog-accent)';
+            // Ensure content remains visible
+            const content = card.querySelector('.blog-content');
+            if (content) content.style.zIndex = '20';
+        });
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = '';
+            card.style.boxShadow = '';
+            // Reset z-index
+            const content = card.querySelector('.blog-content');
+            if (content) content.style.zIndex = '';
         });
     });
     
@@ -355,6 +393,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Setup enhanced mobile menu
     setupMobileMenu();
+    
+    // Add scroll event listener for continuous animation updates
+    window.addEventListener('scroll', reveal);
 });
 
 // Animate skill progress bars when they come into view
