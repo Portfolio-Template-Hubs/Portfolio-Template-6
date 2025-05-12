@@ -186,65 +186,75 @@ function initScrollAnimations() {
     timelineItems.forEach(item => timelineObserver.observe(item));
 }
 
-// Theme toggle functionality
-function setupThemeToggle() {
-    // Create theme toggle button if it doesn't exist
-    if (!document.querySelector('.theme-toggle')) {
-        const themeToggle = document.createElement('div');
-        themeToggle.className = 'theme-toggle';
-        themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-        document.body.appendChild(themeToggle);
-        
-        // Set initial theme based on localStorage or default to dark
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        document.documentElement.setAttribute('data-theme', savedTheme);
-        updateThemeIcon(savedTheme);
-        
-        // Add click event to toggle theme
-        themeToggle.addEventListener('click', () => {
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-            
-            document.documentElement.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-            updateThemeIcon(newTheme);
-        });
-    }
+// Set dark theme as default
+function setupDarkTheme() {
+    // Always use dark theme
+    document.documentElement.setAttribute('data-theme', 'dark');
+    localStorage.setItem('theme', 'dark');
 }
 
-// Update theme toggle icon based on current theme
-function updateThemeIcon(theme) {
-    const themeIcon = document.querySelector('.theme-toggle i');
-    if (themeIcon) {
-        themeIcon.className = theme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
-    }
-}
-
-// Improved mobile menu functionality
+// Enhanced mobile menu functionality with animations
 function setupMobileMenu() {
     const menuToggle = document.querySelector('.menu-toggle');
     const navMenu = document.querySelector('nav ul');
+    const header = document.querySelector('header');
     
     if (menuToggle && navMenu) {
         // Update initial state based on screen size
         if (window.innerWidth <= 768) {
             navMenu.style.display = 'none';
+            menuToggle.style.display = 'flex';
+        } else {
+            menuToggle.style.display = 'none';
         }
         
+        // Add active class for styling
         menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            header.classList.toggle('menu-open');
+            
             if (navMenu.style.display === 'none' || navMenu.style.display === '') {
+                // Show menu with animation
                 navMenu.style.display = 'flex';
                 navMenu.style.flexDirection = 'column';
                 navMenu.style.position = 'absolute';
                 navMenu.style.top = '100%';
                 navMenu.style.left = '0';
                 navMenu.style.width = '100%';
-                navMenu.style.backgroundColor = 'var(--secondary-bg)';
-                navMenu.style.padding = '1rem';
-                navMenu.style.boxShadow = 'var(--shadow-1)';
+                navMenu.style.backgroundColor = 'rgba(15, 15, 15, 0.95)';
+                navMenu.style.backdropFilter = 'blur(10px)';
+                navMenu.style.padding = '1.5rem';
+                navMenu.style.boxShadow = 'var(--shadow-2)';
                 navMenu.style.zIndex = '100';
+                navMenu.style.borderTop = '1px solid var(--accent-blue)';
+                navMenu.style.transform = 'translateY(0)';
+                navMenu.style.opacity = '1';
+                navMenu.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                
+                // Add spacing and animations to menu items
+                navMenu.querySelectorAll('li').forEach((item, index) => {
+                    item.style.margin = '0.8rem 0';
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateX(-20px)';
+                    item.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                    item.style.transitionDelay = `${index * 0.05}s`;
+                    
+                    // Trigger animation
+                    setTimeout(() => {
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateX(0)';
+                    }, 10);
+                });
             } else {
-                navMenu.style.display = 'none';
+                // Hide menu with animation
+                navMenu.querySelectorAll('li').forEach(item => {
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateX(-20px)';
+                });
+                
+                setTimeout(() => {
+                    navMenu.style.display = 'none';
+                }, 300);
             }
         });
         
@@ -252,7 +262,18 @@ function setupMobileMenu() {
         navMenu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 if (window.innerWidth <= 768) {
-                    navMenu.style.display = 'none';
+                    menuToggle.classList.remove('active');
+                    header.classList.remove('menu-open');
+                    
+                    // Hide menu with animation
+                    navMenu.querySelectorAll('li').forEach(item => {
+                        item.style.opacity = '0';
+                        item.style.transform = 'translateX(-20px)';
+                    });
+                    
+                    setTimeout(() => {
+                        navMenu.style.display = 'none';
+                    }, 300);
                 }
             });
         });
@@ -260,14 +281,31 @@ function setupMobileMenu() {
         // Update menu display on window resize
         window.addEventListener('resize', () => {
             if (window.innerWidth > 768) {
+                menuToggle.style.display = 'none';
+                menuToggle.classList.remove('active');
+                header.classList.remove('menu-open');
+                
                 navMenu.style.display = 'flex';
                 navMenu.style.flexDirection = 'row';
                 navMenu.style.position = 'static';
                 navMenu.style.width = 'auto';
                 navMenu.style.backgroundColor = 'transparent';
+                navMenu.style.backdropFilter = 'none';
                 navMenu.style.padding = '0';
                 navMenu.style.boxShadow = 'none';
+                navMenu.style.borderTop = 'none';
+                navMenu.style.transform = 'none';
+                navMenu.style.opacity = '1';
+                
+                // Reset menu items styles
+                navMenu.querySelectorAll('li').forEach(item => {
+                    item.style.margin = '0';
+                    item.style.opacity = '1';
+                    item.style.transform = 'none';
+                    item.style.transition = 'none';
+                });
             } else {
+                menuToggle.style.display = 'flex';
                 navMenu.style.display = 'none';
             }
         });
@@ -312,10 +350,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Setup project filtering
     setupProjectFilters();
     
-    // Setup theme toggle
-    setupThemeToggle();
+    // Setup dark theme
+    setupDarkTheme();
     
-    // Setup improved mobile menu
+    // Setup enhanced mobile menu
     setupMobileMenu();
 });
 
