@@ -192,18 +192,18 @@ function setupThemeToggle() {
     if (!document.querySelector('.theme-toggle')) {
         const themeToggle = document.createElement('div');
         themeToggle.className = 'theme-toggle';
-        themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
         document.body.appendChild(themeToggle);
         
-        // Set initial theme based on localStorage or default to light
-        const savedTheme = localStorage.getItem('theme') || 'light';
+        // Set initial theme based on localStorage or default to dark
+        const savedTheme = localStorage.getItem('theme') || 'dark';
         document.documentElement.setAttribute('data-theme', savedTheme);
         updateThemeIcon(savedTheme);
         
         // Add click event to toggle theme
         themeToggle.addEventListener('click', () => {
             const currentTheme = document.documentElement.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
             
             document.documentElement.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
@@ -295,12 +295,22 @@ document.addEventListener('DOMContentLoaded', () => {
     // Add hover effects to skill items
     document.querySelectorAll('.skill-item').forEach(item => {
         item.addEventListener('mouseenter', () => {
-            item.querySelector('i').classList.add('pulse');
+            if (item.querySelector('i')) {
+                item.querySelector('i').classList.add('pulse');
+            }
         });
         item.addEventListener('mouseleave', () => {
-            item.querySelector('i').classList.remove('pulse');
+            if (item.querySelector('i')) {
+                item.querySelector('i').classList.remove('pulse');
+            }
         });
     });
+    
+    // Animate skill progress bars
+    animateSkillBars();
+    
+    // Setup project filtering
+    setupProjectFilters();
     
     // Setup theme toggle
     setupThemeToggle();
@@ -308,6 +318,61 @@ document.addEventListener('DOMContentLoaded', () => {
     // Setup improved mobile menu
     setupMobileMenu();
 });
+
+// Animate skill progress bars when they come into view
+function animateSkillBars() {
+    const skillBars = document.querySelectorAll('.skill-progress');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const width = entry.target.style.width;
+                entry.target.style.width = '0';
+                setTimeout(() => {
+                    entry.target.style.width = width;
+                }, 100);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.2 });
+    
+    skillBars.forEach(bar => observer.observe(bar));
+}
+
+// Setup project filtering functionality
+function setupProjectFilters() {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+    
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Remove active class from all buttons
+            filterBtns.forEach(b => b.classList.remove('active'));
+            
+            // Add active class to clicked button
+            btn.classList.add('active');
+            
+            const filter = btn.getAttribute('data-filter');
+            
+            // Filter projects
+            projectCards.forEach(card => {
+                if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                    card.style.display = 'flex';
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 100);
+                } else {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(30px)';
+                    setTimeout(() => {
+                        card.style.display = 'none';
+                    }, 500);
+                }
+            });
+        });
+    });
+}
 
 // Add smooth page transitions
 window.addEventListener('beforeunload', function(e) {

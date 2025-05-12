@@ -52,53 +52,235 @@
 
     <section id="skills" class="section">
         <h2 class="rotate-in">Skills</h2>
-        <div class="skills-container">
-            <div class="skill-item"><i class="fas fa-code"></i> HTML</div>
-            <div class="skill-item"><i class="fas fa-paint-brush"></i> CSS</div>
-            <div class="skill-item"><i class="fab fa-js"></i> JavaScript</div>
-            <div class="skill-item"><i class="fab fa-react"></i> React</div>
-            <div class="skill-item"><i class="fab fa-node-js"></i> Node.js</div>
-            <div class="skill-item"><i class="fab fa-python"></i> Python</div>
-            <div class="skill-item"><i class="fas fa-database"></i> SQL</div>
-            <div class="skill-item"><i class="fab fa-git-alt"></i> Git</div>
+        <p class="section-subtitle">My technical expertise and proficiency levels</p>
+        
+        <div class="skills-categories">
+            <div class="skill-category">
+                <h3>Frontend Development</h3>
+                <div class="skills-container">
+                    <div class="skill-item">
+                        <div class="skill-icon"><i class="fas fa-code"></i></div>
+                        <h4>HTML5</h4>
+                        <div class="skill-level">
+                            <div class="skill-progress" style="width: 95%"></div>
+                        </div>
+                        <span class="skill-percent">95%</span>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon"><i class="fas fa-paint-brush"></i></div>
+                        <h4>CSS3</h4>
+                        <div class="skill-level">
+                            <div class="skill-progress" style="width: 90%"></div>
+                        </div>
+                        <span class="skill-percent">90%</span>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon"><i class="fab fa-js"></i></div>
+                        <h4>JavaScript</h4>
+                        <div class="skill-level">
+                            <div class="skill-progress" style="width: 85%"></div>
+                        </div>
+                        <span class="skill-percent">85%</span>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon"><i class="fab fa-react"></i></div>
+                        <h4>React</h4>
+                        <div class="skill-level">
+                            <div class="skill-progress" style="width: 80%"></div>
+                        </div>
+                        <span class="skill-percent">80%</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="skill-category">
+                <h3>Backend Development</h3>
+                <div class="skills-container">
+                    <div class="skill-item">
+                        <div class="skill-icon"><i class="fab fa-node-js"></i></div>
+                        <h4>Node.js</h4>
+                        <div class="skill-level">
+                            <div class="skill-progress" style="width: 75%"></div>
+                        </div>
+                        <span class="skill-percent">75%</span>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon"><i class="fab fa-python"></i></div>
+                        <h4>Python</h4>
+                        <div class="skill-level">
+                            <div class="skill-progress" style="width: 70%"></div>
+                        </div>
+                        <span class="skill-percent">70%</span>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon"><i class="fas fa-database"></i></div>
+                        <h4>SQL</h4>
+                        <div class="skill-level">
+                            <div class="skill-progress" style="width: 80%"></div>
+                        </div>
+                        <span class="skill-percent">80%</span>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon"><i class="fab fa-git-alt"></i></div>
+                        <h4>Git</h4>
+                        <div class="skill-level">
+                            <div class="skill-progress" style="width: 85%"></div>
+                        </div>
+                        <span class="skill-percent">85%</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="skill-category">
+                <h3>Other Skills</h3>
+                <div class="skills-container">
+                    <div class="skill-item">
+                        <div class="skill-icon"><i class="fas fa-mobile-alt"></i></div>
+                        <h4>Responsive Design</h4>
+                        <div class="skill-level">
+                            <div class="skill-progress" style="width: 90%"></div>
+                        </div>
+                        <span class="skill-percent">90%</span>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon"><i class="fas fa-universal-access"></i></div>
+                        <h4>Accessibility</h4>
+                        <div class="skill-level">
+                            <div class="skill-progress" style="width: 75%"></div>
+                        </div>
+                        <span class="skill-percent">75%</span>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon"><i class="fas fa-server"></i></div>
+                        <h4>DevOps</h4>
+                        <div class="skill-level">
+                            <div class="skill-progress" style="width: 65%"></div>
+                        </div>
+                        <span class="skill-percent">65%</span>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon"><i class="fas fa-project-diagram"></i></div>
+                        <h4>System Design</h4>
+                        <div class="skill-level">
+                            <div class="skill-progress" style="width: 70%"></div>
+                        </div>
+                        <span class="skill-percent">70%</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <section id="projects" class="section">
         <h2 class="flip-in">Projects</h2>
+        <p class="section-subtitle">Showcasing my best work and creative solutions</p>
+        
+        <div class="projects-filter">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="web">Web Development</button>
+            <button class="filter-btn" data-filter="mobile">Mobile Apps</button>
+            <button class="filter-btn" data-filter="design">UI/UX Design</button>
+        </div>
+        
         <div class="projects-grid">
-            <div class="project-card">
-                <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80')"></div>
-                <h3>Project One</h3>
-                <p>A brief description of project one. Highlighting key features and technologies used.</p>
-                <div class="project-tags">
-                    <span>React</span>
-                    <span>Node.js</span>
-                    <span>MongoDB</span>
+            <div class="project-card" data-category="web">
+                <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80')">
+                    <div class="project-overlay">
+                        <div class="project-actions">
+                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+                            <a href="#" class="project-github"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
                 </div>
-                <a href="#" target="_blank" class="btn-view-project">View Project</a>
+                <div class="project-content">
+                    <h3>E-Commerce Platform</h3>
+                    <p>A full-featured online shopping platform with user authentication, product management, cart functionality, and payment integration.</p>
+                    <div class="project-tags">
+                        <span>React</span>
+                        <span>Node.js</span>
+                        <span>MongoDB</span>
+                        <span>Stripe API</span>
+                    </div>
+                    <div class="project-buttons">
+                        <a href="#" target="_blank" class="btn-view-project">Live Demo</a>
+                        <a href="#" target="_blank" class="btn-view-code">View Code</a>
+                    </div>
+                </div>
             </div>
-            <div class="project-card">
-                <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')"></div>
-                <h3>Project Two</h3>
-                <p>A brief description of project two. Highlighting key features and technologies used.</p>
-                <div class="project-tags">
-                    <span>JavaScript</span>
-                    <span>CSS</span>
-                    <span>HTML</span>
+            
+            <div class="project-card" data-category="mobile">
+                <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')">
+                    <div class="project-overlay">
+                        <div class="project-actions">
+                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+                            <a href="#" class="project-github"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
                 </div>
-                <a href="#" target="_blank" class="btn-view-project">View Project</a>
+                <div class="project-content">
+                    <h3>Task Management App</h3>
+                    <p>A responsive task management application with drag-and-drop functionality, task categorization, reminders, and data visualization.</p>
+                    <div class="project-tags">
+                        <span>JavaScript</span>
+                        <span>CSS</span>
+                        <span>HTML</span>
+                        <span>LocalStorage API</span>
+                    </div>
+                    <div class="project-buttons">
+                        <a href="#" target="_blank" class="btn-view-project">Live Demo</a>
+                        <a href="#" target="_blank" class="btn-view-code">View Code</a>
+                    </div>
+                </div>
             </div>
-            <div class="project-card">
-                <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')"></div>
-                <h3>Project Three</h3>
-                <p>A brief description of project three. Highlighting key features and technologies used.</p>
-                <div class="project-tags">
-                    <span>Python</span>
-                    <span>Django</span>
-                    <span>PostgreSQL</span>
+            
+            <div class="project-card" data-category="design">
+                <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')">
+                    <div class="project-overlay">
+                        <div class="project-actions">
+                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+                            <a href="#" class="project-github"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
                 </div>
-                <a href="#" target="_blank" class="btn-view-project">View Project</a>
+                <div class="project-content">
+                    <h3>Weather Dashboard</h3>
+                    <p>An interactive weather application that provides real-time weather data, forecasts, and historical weather patterns with beautiful data visualizations.</p>
+                    <div class="project-tags">
+                        <span>Python</span>
+                        <span>Django</span>
+                        <span>PostgreSQL</span>
+                        <span>Chart.js</span>
+                    </div>
+                    <div class="project-buttons">
+                        <a href="#" target="_blank" class="btn-view-project">Live Demo</a>
+                        <a href="#" target="_blank" class="btn-view-code">View Code</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-card" data-category="web">
+                <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2015&q=80')">
+                    <div class="project-overlay">
+                        <div class="project-actions">
+                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+                            <a href="#" class="project-github"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <h3>Portfolio Website</h3>
+                    <p>A modern, responsive portfolio website with dark/light theme, smooth animations, and interactive elements to showcase professional work.</p>
+                    <div class="project-tags">
+                        <span>HTML5</span>
+                        <span>CSS3</span>
+                        <span>JavaScript</span>
+                        <span>GSAP</span>
+                    </div>
+                    <div class="project-buttons">
+                        <a href="#" target="_blank" class="btn-view-project">Live Demo</a>
+                        <a href="#" target="_blank" class="btn-view-code">View Code</a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
