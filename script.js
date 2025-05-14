@@ -241,8 +241,10 @@ function setupMobileMenu() {
         // Update initial state based on screen size
         if (window.innerWidth <= 768) {
             menuToggle.style.display = 'flex';
+            navMenu.style.display = 'none';
         } else {
             menuToggle.style.display = 'none';
+            navMenu.style.display = 'flex';
         }
         
         // Add active class for styling
@@ -252,6 +254,7 @@ function setupMobileMenu() {
             navMenu.classList.toggle('active');
             
             if (navMenu.classList.contains('active')) {
+                navMenu.style.display = 'flex';
                 // Add animations to menu items
                 navMenu.querySelectorAll('li').forEach((item, index) => {
                     item.style.opacity = '0';
@@ -271,6 +274,9 @@ function setupMobileMenu() {
                     item.style.opacity = '0';
                     item.style.transform = 'translateX(20px)';
                 });
+                setTimeout(() => {
+                    navMenu.style.display = 'none';
+                }, 500);
             }
         });
         
@@ -287,6 +293,9 @@ function setupMobileMenu() {
                         item.style.opacity = '0';
                         item.style.transform = 'translateX(20px)';
                     });
+                    setTimeout(() => {
+                        navMenu.style.display = 'none';
+                    }, 500);
                 }
             });
         });
@@ -298,6 +307,7 @@ function setupMobileMenu() {
                 menuToggle.classList.remove('active');
                 header.classList.remove('menu-open');
                 navMenu.classList.remove('active');
+                navMenu.style.display = 'flex';
                 
                 // Reset menu items styles
                 navMenu.querySelectorAll('li').forEach(item => {
@@ -309,7 +319,7 @@ function setupMobileMenu() {
             } else {
                 menuToggle.style.display = 'flex';
                 if (!navMenu.classList.contains('active')) {
-                    navMenu.classList.remove('active');
+                    navMenu.style.display = 'none';
                 }
             }
         });
