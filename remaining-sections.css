@@ -246,7 +246,7 @@
     left: -5px;
     right: -5px;
     bottom: -5px;
-    background: linear-gradient(45deg, var(--neon-violet), var(--neon-pink), var(--neon-blue));
+    /* background: linear-gradient(45deg, var(--neon-violet), var(--neon-pink), var(--neon-blue)); */
     z-index: -1;
     background-size: 400% 400%;
     animation: gradientBorder 15s ease infinite;
@@ -261,7 +261,7 @@
 
 .blog-card:hover {
     transform: translateY(-15px) perspective(1000px) rotateX(5deg) scale(1.03);
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 30px var(--neon-violet);
+    /* box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 30px var(--neon-violet); */
 }
 
 .blog-image {
@@ -292,7 +292,7 @@
 
 .blog-card:hover .blog-category {
     background: linear-gradient(to right, var(--neon-violet), var(--neon-pink));
-    box-shadow: 0 0 15px var(--neon-violet);
+    /* box-shadow: 0 0 15px var(--neon-violet); */
     transform: translateY(-5px) scale(1.1);
 }
 
@@ -484,15 +484,14 @@ footer::before {
 .footer-logo {
     font-size: 2rem;
     font-weight: 700;
-    color: var(--text-primary);
     margin-bottom: 1rem;
-    background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--neon-blue);
+    text-shadow: 0 0 10px var(--neon-blue);
 }
 
 .footer-content p {
     color: var(--text-secondary);
+    color: aliceblue;
     max-width: 600px;
     margin-bottom: 2rem;
 }

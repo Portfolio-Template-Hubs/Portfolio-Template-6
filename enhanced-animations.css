@@ -14,7 +14,8 @@
     left: -5px;
     right: -5px;
     bottom: -5px;
-    background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple), var(--neon-pink), var(--neon-green));
+    background: linear-gradient(135deg, #000000, #111111);
+
     z-index: -1;
     background-size: 400% 400%;
     animation: gradientBorder 15s ease infinite;
@@ -186,7 +187,7 @@
     left: -5px;
     right: -5px;
     bottom: -5px;
-    background: linear-gradient(45deg, var(--neon-violet), var(--neon-pink), var(--neon-blue));
+    /* background: linear-gradient(45deg, var(--neon-violet), var(--neon-pink), var(--neon-blue)); */
     z-index: -1;
     background-size: 400% 400%;
     animation: gradientBorder 15s ease infinite;
@@ -201,7 +202,7 @@
 
 .blog-card:hover {
     transform: translateY(-15px) perspective(1000px) rotateX(5deg) scale(1.03);
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 30px var(--neon-violet);
+    /* box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 30px var(--neon-violet); */
 }
 
 .blog-card:hover .blog-image {
@@ -214,7 +215,7 @@
 }
 
 .blog-card:hover .blog-category {
-    background: linear-gradient(to right, var(--neon-violet), var(--neon-pink));
+    /* background: linear-gradient(to right, var(--neon-violet), var(--neon-pink)); */
     box-shadow: 0 0 15px var(--neon-violet);
     transform: translateY(-5px) scale(1.1);
 }
@@ -233,7 +234,7 @@
     left: -5px;
     right: -5px;
     bottom: -5px;
-    background: linear-gradient(45deg, var(--neon-pink), var(--neon-purple));
+    /* background: linear-gradient(45deg, var(--neon-pink), var(--neon-purple)); */
     z-index: -1;
     background-size: 400% 400%;
     animation: gradientBorder 15s ease infinite;
@@ -248,7 +249,7 @@
 
 .testimonial-card:hover {
     transform: translateY(-15px) scale(1.03);
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 30px var(--neon-pink);
+    /* box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 30px var(--neon-pink); */
 }
 
 .testimonial-avatar {
@@ -257,7 +258,7 @@
 
 .testimonial-card:hover .testimonial-avatar {
     transform: scale(1.1);
-    box-shadow: 0 0 20px var(--neon-pink);
+    /* box-shadow: 0 0 20px var(--neon-pink); */
 }
 
 /* Enhanced Filter Buttons */

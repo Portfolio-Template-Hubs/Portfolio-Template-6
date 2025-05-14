@@ -10,8 +10,6 @@
     
     /* Enhanced neon colors */
     --neon-blue: #00f3ff;
-    --neon-purple: #9d00ff;
-    --neon-pink: #ff00f7;
     --neon-green: #00ff8d;
     --neon-yellow: #ffee00;
     --neon-red: #ff0055;
@@ -21,10 +19,10 @@
     --hero-accent: var(--neon-purple);
     --about-accent: #20b2aa;
     --skills-accent: #9370db;
-    --projects-accent: #1e90ff;
+    /* --projects-accent: #1e90ff; */
     --testimonials-accent: #ff69b4;
     --timeline-accent: #3cb371;
-    --blog-accent: var(--neon-violet);
+    /* --blog-accent: var(--neon-violet); */
     --contact-accent: #00ced1;
     
     /* Glass effects */
@@ -178,18 +176,14 @@ nav.scrolled {
     font-weight: 700;
     color: var(--neon-blue);
     position: relative;
-    text-shadow: 0 0 15px rgba(52, 152, 219, 0.7);
     letter-spacing: 1px;
     transition: all 0.3s ease;
-    background: var(--gradient-2);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
     padding: 0 5px;
 }
 
 .logo:hover {
     transform: scale(1.05);
-    text-shadow: 0 0 15px var(--neon-purple);
+    text-shadow: 0 0 15px var(--neon-blue);
     animation: pulse 2s infinite;
 }
 
@@ -254,7 +248,7 @@ nav a:hover::after {
     left: 0;
     width: 100%;
     height: 1px;
-    background: var(--gradient-3);
+    /* background: var(--gradient-3); */
     opacity: 0.3;
 }
 

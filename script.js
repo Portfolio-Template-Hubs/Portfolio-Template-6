@@ -355,8 +355,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Add hover effects to project cards with enhanced animations
     document.querySelectorAll('.project-card').forEach(card => {
         card.addEventListener('mouseenter', () => {
-            card.style.transform = 'perspective(1000px) rotateX(5deg) rotateY(5deg) translateY(-15px)';
-            card.style.boxShadow = 'var(--shadow-2), 0 0 20px var(--projects-accent)';
+            card.style.transform = 'translateY(-15px)';
+            card.style.boxShadow = '0 30px 60px rgba(0, 0, 0, 0.5)';
         });
         card.addEventListener('mouseleave', () => {
             card.style.transform = '';
@@ -457,3 +457,21 @@ function setupProjectFilters() {
 window.addEventListener('beforeunload', function(e) {
     document.body.classList.add('page-transition');
 });
+
+// Scroll indicator functionality
+const scrollIndicator = document.querySelector('.scroll-indicator');
+if (scrollIndicator) {
+    scrollIndicator.addEventListener('click', () => {
+        const aboutSection = document.querySelector('#about');
+        if (aboutSection) {
+            const headerOffset = 100;
+            const elementPosition = aboutSection.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
+        }
+    });
+}
