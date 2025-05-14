@@ -1,0 +1,93 @@
+/* About Section Styles */
+
+#about {
+    background: linear-gradient(rgba(10, 10, 10, 0.8), rgba(15, 15, 15, 0.9)), url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative;
+}
+
+#about p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    color: var(--text-secondary);
+    max-width: 800px;
+}
+
+.about-icons {
+    display: flex;
+    gap: 2rem;
+    margin: 2rem 0;
+    justify-content: center;
+}
+
+.about-icons i {
+    font-size: 2.5rem;
+    color: var(--about-accent);
+    transition: all 0.3s ease;
+    animation: float 3s ease-in-out infinite;
+}
+
+.about-icons i:hover {
+    transform: scale(1.2);
+    color: var(--neon-blue);
+    text-shadow: 0 0 15px var(--neon-blue);
+}
+
+.personal-quote {
+    font-size: 1.5rem;
+    font-style: italic;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    border-left: 4px solid var(--about-accent);
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border-radius: 0 10px 10px 0;
+    box-shadow: var(--shadow-1);
+    position: relative;
+    max-width: 800px;
+}
+
+.personal-quote::before {
+    content: '"';
+    position: absolute;
+    top: 0;
+    left: 10px;
+    font-size: 4rem;
+    color: var(--about-accent);
+    opacity: 0.2;
+}
+
+/* Enhanced animations for about section */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered animation for multiple paragraphs */
+.fade-in:nth-child(2) {
+    transition-delay: 0.2s;
+}
+
+.fade-in:nth-child(3) {
+    transition-delay: 0.4s;
+}
+
+.zoom-in {
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.zoom-in.animated {
+    opacity: 1;
+    transform: scale(1);
+}

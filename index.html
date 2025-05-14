@@ -4,7 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="base-styles.css">
+    <link rel="stylesheet" href="hero-styles.css">
+    <link rel="stylesheet" href="about-styles.css">
+    <link rel="stylesheet" href="skills-styles.css">
+    <link rel="stylesheet" href="projects-styles.css">
+    <link rel="stylesheet" href="remaining-sections.css">
+    <link rel="stylesheet" href="contact-styles.css">
+    <link rel="stylesheet" href="enhanced-animations.css">
+    <link rel="stylesheet" href="section-highlight.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
@@ -29,6 +37,28 @@
             </div>
         </nav>
     </header>
+
+    <section id="hero" class="hero-section">
+        <div class="parallax" data-speed="0.05"></div>
+        <div class="hero-content">
+            <h1 class="glitch-text" data-text="Hello, I'm a Developer">Hello, I'm a Developer</h1>
+            <p class="slide-in-left">Showcasing my journey as a Coder</p>
+            <div class="hero-buttons">
+                <a href="#projects" class="cta-button primary-btn">View My Work</a>
+                <a href="#contact" class="cta-button secondary-btn">Contact Me</a>
+            </div>
+            <div class="scroll-indicator bounce-in">
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+        <div class="hero-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+            <div class="shape shape-4"></div>
+        </div>
+        <canvas id="hero-canvas" class="hero-canvas"></canvas>
+    </section>
 
     <section id="about" class="section">
         <h2 class="zoom-in">About Me</h2>
@@ -431,6 +461,87 @@
         </div>
     </section>
 
+    <section id="contact" class="section">
+        <h2 class="slide-in-left">Contact Me</h2>
+        <p class="section-subtitle">Let's connect and discuss your next project</p>
+        
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h4>Location</h4>
+                        <p>New York, NY, United States</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h4>Email</h4>
+                        <p>contact@yourportfolio.com</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h4>Phone</h4>
+                        <p>+1 (555) 123-4567</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h4>Working Hours</h4>
+                        <p>Monday - Friday: 9am - 6pm</p>
+                    </div>
+                </div>
+                
+                <div class="social-links">
+                    <a href="#" class="social-link facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link linkedin"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-link github"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+            
+            <form class="contact-form" id="contact-form">
+                <div class="form-group">
+                    <label for="name" class="form-label">Your Name</label>
+                    <input type="text" id="name" class="form-control" placeholder="Enter your name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email" class="form-label">Your Email</label>
+                    <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="subject" class="form-label">Subject</label>
+                    <input type="text" id="subject" class="form-control" placeholder="Enter subject" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message" class="form-label">Your Message</label>
+                    <textarea id="message" class="form-control" placeholder="Enter your message" required></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">Send Message <i class="fas fa-paper-plane"></i></button>
+            </form>
+        </div>
+    </section>
+
     <footer>
         <div class="footer-content">
             <div class="footer-logo">My Portfolio</div>
@@ -448,6 +559,8 @@
         </div>
     </footer>
 
+    <!-- Enhanced Animation Scripts -->
+    <script src="animations.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
